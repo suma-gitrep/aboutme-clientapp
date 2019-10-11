@@ -57,7 +57,7 @@
 <!-- 
     <input type="text" name="sum"><br>
     <input type="button" id="sum" value="Sum" > -->
-    <button id="wiper" class="btn btn-danger">Clear Storage</button>
+    
     <br>
     <p id="result" padding-top: 50px; ></p>
     <p id="result1" padding-top: 50px; ></p>
@@ -127,13 +127,7 @@
               console.log('  Finished clicker click handler')
             })
         
-            document.querySelector('#wiper').addEventListener('click', () => {
-              console.log('  Starting wiper click handler')
-              localStorage.removeItem('countOfClicks')
-              localStorage.removeItem('number1')
-              localStorage.removeItem('number2')
-              console.log('  Finished wiper click handler - localStorage entries removed')
-            })
+          
         
             console.log('SCRIPT END')
         
