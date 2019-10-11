@@ -5,7 +5,7 @@ QUnit.test('TEST add', assert => {
   assert.equal(add(-1, -1), -2, 'Negative integers')
   assert.equal(add(-10, 10), 0, 'Mixed')
   assert.equal(add(-0, 0), 0, 'Zero')
-  assert.equal(add(2, 2), 5, 'Mixed')
+  assert.equal(add(2, 2), 4, 'Mixed')
 
 })
 function add(x,y){
