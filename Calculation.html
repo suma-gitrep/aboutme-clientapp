@@ -13,10 +13,10 @@
 
 <body>
     
-  <header>
+    <header>
 
 		<nav class="navbar navbar-expand-md">
-			<a class="navbar-brand" href="index.html">My Page</a>
+			<a class="navbar-brand" href="index.html">MY PAGE</a>
 			<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse"
 				data-target="#main-navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -36,35 +36,101 @@
 			</div>
 		</nav>
 	</header>
-
-    <form >
-    Number 1: <input type="text" name="num1"><br>
-    Number 2: <input type="text" name="num2"><br>
-    <p>
-      The addition of two inputs:
-    </p>
-    <input type="text" name="sum"><br>
-    <input type="button" value="Sum"  onclick="calcSum()">
-</form>
- 
+<div align="center"  padding: 10px; >
 
     
-	
+        <fieldset class="mt-4">
+                <label for="firstNumber">Enter first number (1 to 100):</label>
+                <input id="firstNumber" type="number" min="1" max="100" value=7>
+                <span id="firstWarning" class="text-danger"></span>
+              </fieldset>
+      
+              <fieldset class="mt-4">
+                <label for="secondNumber">Enter second number (1 to 100):</label>
+                <input id="secondNumber" type="number" min="1" max="100" value="12">
+                <span id="secondWarning" class="text-danger"></span>
+              </fieldset>
+
+    <button id="clicker" class="btn btn-primary" >Calculate!</button>
+<!-- 
+    <input type="text" name="sum"><br>
+    <input type="button" id="sum" value="Sum" > -->
+    <button id="wiper" class="btn btn-danger">Clear Storage</button>
+    <br>
+    <p id="result" padding-top: 50px; ></p>
+
+</div>
+
+
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="Contact.js"></script>
-    <script>
+    <!-- <script>
+        document.getElementById("sum").addEventListener("click", calcSum);
+
         function calcSum() {
             let num1 = document.getElementsByName("num1")[0].value;
             let num2 = document.getElementsByName("num2")[0].value;
             let sum = Number(num1) + Number(num2);
             document.getElementsByName("sum")[0].value = sum;
         }
-    </script>
-    
+    </script>  -->
+    <script>
+
+            /* global localStorage */
+            console.log('SCRIPT START')
+        
+            console.log('Declare testable functions......................')
+        
+            function add(x, y) { return x + y }
+            console.log('Defined add=' + add)
+        
+            console.log('Declare event listeners .......................')
+        
+            window.addEventListener('load', (event) => {
+              console.log('  Starting initialization ')
+             
+              if (localStorage.getItem('number1')) {
+                document.querySelector('#firstNumber').value = parseInt(localStorage.number1)
+                console.log(`  Stored num1 = ${localStorage.number1}`)
+              }
+              if (localStorage.getItem('number2')) {
+                document.querySelector('#secondNumber').value = parseInt(localStorage.number2)
+                console.log(`  Stored num2 = ${localStorage.number2}`)
+              }
+              console.log('  Finished initialization')
+            })
+        
+            document.querySelector('#clicker').addEventListener('click', () => {
+              console.log('  Starting clicker click handler')
+              const origCount = parseInt(localStorage.getItem('countOfClicks')) || 0
+              const i = parseInt(document.querySelector('#firstNumber').value)
+              console.log('i=' + i)
+              const j = parseInt(document.querySelector('#secondNumber').value)
+              console.log('j=' + j)
+              const ct = origCount + 1
+              const ans = `  your sum is ${add(i,j)}. This has been run  ${ct}  times.`
+              document.querySelector('#result').innerHTML = ans
+        
+              localStorage.setItem('countOfClicks', ct)  // define a string key to store + its value
+              localStorage.setItem('number1', i)
+              localStorage.setItem('number2', j)
+              console.log('  Finished clicker click handler')
+            })
+        
+            document.querySelector('#wiper').addEventListener('click', () => {
+              console.log('  Starting wiper click handler')
+              localStorage.removeItem('countOfClicks')
+              localStorage.removeItem('number1')
+              localStorage.removeItem('number2')
+              console.log('  Finished wiper click handler - localStorage entries removed')
+            })
+        
+            console.log('SCRIPT END')
+        
+          </script>
 </body>
 
 </html>

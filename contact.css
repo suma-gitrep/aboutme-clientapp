@@ -26,7 +26,8 @@
       }
     body{
     
-    background-image:url(background.jpg);}
+    background-image:url(background.jpg);
+}
     .class form-group{
         width:50px;
         padding-block-start: 20%;
